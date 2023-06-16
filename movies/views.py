@@ -4,7 +4,7 @@ from user.models import *
 # Create your views here.
 
 def index(request):
-    profiller = Profile.objects.filter(user = request.user)
+    # profiller = Profile.objects.filter(user = request.user)
     return render(request, 'index.html')
 
 def movies(request, profilId, slug):
