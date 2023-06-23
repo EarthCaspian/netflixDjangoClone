@@ -4,8 +4,38 @@
 {% block content %}
 
     {% include 'partials/_navbar.html' %}
+    <br><br>
+    {% if user.is_authenticated %}
+    <div class="container">
+          <div class="row mt-5">
+            <h3 class="text-light">Netflix'te Popüler</h3>
+            {% for film in populer %}
+                <div class="col-md-2 col-3 mt-1">
+                <a class="text-decoration-none text-bg-dark" href="{% url 'video' film.id %}">
+                    <img src="{{film.resim.url}}" class="w-100 h-75" alt="">
+                    <h4 class = "text-center mt-2">{{film.isim}}</h4>
+                </a>
+                
+                </div>
+            {% endfor %}
+          </div>
 
-      <!-- Hero image -->
+          <div class="row mt-5">
+            <h3 class="text-light"> Gündemdekiler</h3>
+            {% for film in gundem %}
+            <div class="col-md-2 col-4 mt-1">
+            <a class="text-decoration-none text-bg-dark" href="{% url 'video' film.id %}">
+                <img src="{{film.resim.url}}" class="w-100 h-75" alt="">
+                <h4 class = "text-center mt-2">{{film.isim}}</h4>
+            </a>
+            </div>
+            {% endfor %}
+            
+          </div>
+      </div>
+    
+    {% else %}
+    <!-- Hero image -->
       <div class="hero-image">
 
         <div class="hero-text">
@@ -18,34 +48,10 @@
         </div>
 
       </div>
+    {% endif %}
+      
 
-      <div class="container">
-          <div class="row mt-5">
-            <h3 class="text-light">Netflix'te Popüler</h3>
-            {% for film in populer %}
-                <div class="col-md-2 col-4 mt-1">
-                <a class="text-decoration-none text-bg-dark" href="{% url 'video' film.id %}">
-                    <img src="{{film.resim.url}}" class="w-100" alt="">
-                    <h4>{{film.isim}}</h4>
-                </a>
-                
-                </div>
-            {% endfor %}
-          </div>
-
-          <div class="row mt-5">
-            <h3 class="text-light"> Gündemdekiler</h3>
-            {% for film in gundem %}
-            <div class="col-md-2 col-4 mt-1">
-            <a class="text-decoration-none text-bg-dark" href="{% url 'video' film.id %}">
-                <img src="{{film.resim.url}}" class="w-100" alt="">
-                <h4>{{film.isim}}</h4>
-            </a>
-            </div>
-            {% endfor %}
-            
-          </div>
-      </div>
+      
 
 
       <!-- Footer -->
